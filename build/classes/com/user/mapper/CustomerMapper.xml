@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.user.mapper.CustomerMapper">
+
+   <select id="findAll" parameterType="String" resultType="pojo.Customer">
+   SELECT * FROM customer 
+   </select>
+   
+    <select id="queryById" parameterType="int" resultType="pojo.Customer">
+   select * from customer where cust_id=#{cust_id};
+   </select>
+   
+    <delete id="deleteCustomer" parameterType="int">
+       delete from customer where cust_id=#{cust_id}
+    </delete>
+    
+    <update id="updateCustomer" parameterType="pojo.Customer">
+       update customer set cust_name=#{cust_name} ,
+       cust_source=#{cust_source},
+       cust_industry=#{cust_industry},
+       cust_level=#{cust_level},
+       cist_linkman=#{cist_linkman}
+         where cust_id=#{cust_id}
+    </update>
+    
+    <insert id="addCustomer" parameterType="pojo.Customer">
+       insert into customer(cust_name,cust_source,cust_industry,cust_level,cist_linkman,cust_code)
+       value(#{cust_name},#{cust_source},#{cust_industry},#{cust_level},#{cist_linkman},#{cust_code})
+    </insert>
+</mapper>
